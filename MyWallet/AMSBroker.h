@@ -1,5 +1,5 @@
 //
-//  AMSMoney-Private.h
+//  AMSBroker.h
 //  MyWallet
 //
 //  Created by Iberfan on 29/7/16.
@@ -7,9 +7,9 @@
 //
 
 @import Foundation;
-#import "AMSMoney.h"
+@class AMSMoney;
 
-@interface AMSMoney()
-@property (nonatomic,strong) NSNumber *amount;
+@interface AMSBroker : NSObject
 
+-(AMSMoney *)reduce:(AMSMoney *) money toCurrency:(NSString *) currency;
 @end

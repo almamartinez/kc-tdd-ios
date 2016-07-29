@@ -8,11 +8,10 @@
 
 #import "AMSMoney.h"
 #import "NSObject+GNUStepAddons.h"
-#import "AMSMoney-Private.h"
-#import "AMSEuro.h"
-#import "AMSDollar.h"
 
-
+@interface AMSMoney()
+@property (nonatomic,strong) NSNumber *amount;
+@end
 
 @implementation AMSMoney
 
@@ -44,11 +43,18 @@
     
 }
 
+-(AMSMoney *) plus:(AMSMoney *) other{
+    NSInteger totalAmount = [self.amount integerValue] + [other.amount integerValue];
+    
+    AMSMoney *total = [[AMSMoney alloc] initWithAmount:totalAmount currency:self.currency];
+    return total;
+}
+
 #pragma mark - Overwritten
 
 -(BOOL)isEqual:(id)object{
-    
-    return [self amount] == [object amount];
+   
+    return (self.currency == [object currency]) && ([self amount] == [object amount]) ;
 }
 
 -(NSUInteger) hash{
