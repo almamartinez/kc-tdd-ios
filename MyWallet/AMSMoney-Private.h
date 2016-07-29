@@ -6,8 +6,10 @@
 //  Copyright © 2016 AlmaMartinez. All rights reserved.
 //
 
-#ifndef AMSMoney_Private_h
-#define AMSMoney_Private_h
+@import Foundation;
+#import "AMSMoney.h"
 
+@interface AMSMoney()
+@property (nonatomic,strong) NSNumber *amount;
 
-#endif /* AMSMoney_Private_h */
+@end

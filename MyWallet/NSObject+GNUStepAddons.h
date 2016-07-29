@@ -6,8 +6,8 @@
 //  Copyright © 2016 AlmaMartinez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSObject (GNUStepAddons)
-
+-(id) subclassResponsibility: (SEL)aSel;
 @end

@@ -6,8 +6,10 @@
 //  Copyright © 2016 AlmaMartinez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+#import "AMSMoney.h"
 
-@interface AMSDollar : NSObject
+@interface AMSDollar : AMSMoney
+
 
 @end

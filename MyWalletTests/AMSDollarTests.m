@@ -5,35 +5,49 @@
 //  Created by Iberfan on 28/7/16.
 //  Copyright © 2016 AlmaMartinez. All rights reserved.
 //
-
-#import <XCTest/XCTest.h>
+@import XCTest;
+#import "AMSDollar.h"
+#import "AMSMoney.h"
 
 @interface AMSDollarTests : XCTestCase
+
 
 @end
 
 @implementation AMSDollarTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)testMultiplication{
+    
+    AMSDollar *five = [AMSMoney dollarWithAmount: 5];
+    AMSDollar *total = [five times: 2];
+    AMSDollar *ten = [AMSMoney dollarWithAmount:  10];
+
+    XCTAssertEqualObjects(ten,total, @"$5 * 2 = $10");
+}
+-(void) testEquality{
+    AMSDollar *five = [AMSMoney dollarWithAmount:  5];
+    AMSDollar *ten = [AMSMoney dollarWithAmount:  10];
+    AMSDollar *total = [five times:2];
+    
+    XCTAssertEqualObjects(ten, total, @"Equivalent objects should be equal!");
+    XCTAssertFalse([total isEqual:five], @"Non equivalent objects should not be equal");
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+
+-(void) testHash{
+    AMSDollar *a = [AMSMoney dollarWithAmount:  2];
+    AMSDollar *b = [AMSMoney dollarWithAmount:  2];
+    
+    XCTAssertEqual(a.hash, b.hash, @"Equal objects must have same hash.");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+-(void) testAmountStorage{
+    AMSDollar *dollar = [AMSMoney dollarWithAmount:2];
+    //Eliminar el warning de amount no declarado porque está oculto ("privado"):
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    XCTAssertEqual(2, [[dollar performSelector:@selector(amount)] integerValue], @"The value retrieve should be the same as the stored");
+#pragma clang diagnostic pop
+    
 }
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
 @end

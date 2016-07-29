@@ -7,10 +7,8 @@
 //
 
 @import Foundation;
+#import "AMSMoney.h"
 
-@interface AMSEuro : NSObject
+@interface AMSEuro : AMSMoney
 
--(id) initWithAmount:(NSInteger) amount;
-
--(AMSEuro *) times:(NSInteger) multiplier;
 @end

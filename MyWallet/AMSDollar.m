@@ -7,7 +7,11 @@
 //
 
 #import "AMSDollar.h"
+#import "AMSMoney-Private.h"
 
 @implementation AMSDollar
+
+
+
 
 @end
