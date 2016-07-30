@@ -7,14 +7,23 @@
 //
 
 @import Foundation;
+@class AMSMoney;
+@class AMSBroker;
 
-@interface AMSMoney : NSObject
+@protocol AMSMoney <NSObject>
 
+-(id) initWithAmount:(NSInteger) amount currency:(NSString *) currency;
+-(id<AMSMoney>) times:(NSInteger) multiplier;
+-(id<AMSMoney>) plus:(AMSMoney *) other;
+-(id<AMSMoney>) reduceToCurrency:(NSString *) currency withBroker:(AMSBroker*) broker;
+@end
+
+@interface AMSMoney : NSObject<AMSMoney>
+
+@property (nonatomic,strong,readonly) NSNumber *amount;
 @property (nonatomic,readonly) NSString *currency;
 
 +(id) euroWithAmount:(NSInteger) amount;
 +(id) dollarWithAmount:(NSInteger) amount;
--(id) initWithAmount:(NSInteger) amount currency:(NSString *) currency;
--(id) times:(NSInteger) multiplier;
--(AMSMoney *) plus:(AMSMoney *) other;
+
 @end

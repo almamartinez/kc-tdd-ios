@@ -8,6 +8,7 @@
 
 #import "AMSMoney.h"
 #import "NSObject+GNUStepAddons.h"
+#import "AMSBroker.h"
 
 @interface AMSMoney()
 @property (nonatomic,strong) NSNumber *amount;
@@ -30,7 +31,7 @@
     return self;
 }
 
--(id) times:(NSInteger) multiplier{
+-(id<AMSMoney>) times:(NSInteger) multiplier{
     //No se debería llamar, sino que se debería usar
     // el de al subclass.
     
@@ -43,11 +44,33 @@
     
 }
 
--(AMSMoney *) plus:(AMSMoney *) other{
+-(id<AMSMoney>) plus:(AMSMoney *) other{
     NSInteger totalAmount = [self.amount integerValue] + [other.amount integerValue];
     
     AMSMoney *total = [[AMSMoney alloc] initWithAmount:totalAmount currency:self.currency];
     return total;
+}
+
+-(id<AMSMoney>) reduceToCurrency:(NSString *) currency withBroker:(AMSBroker*)broker{
+    
+    AMSMoney *result;
+    double rate = [[broker.rates objectForKey:[broker keyFromCurrency:self.currency toCurrency:currency]] doubleValue];
+    
+    //Comprobar que las divisas origen y destino son las mismas
+    if ([self.currency isEqual:currency]){
+        result = self;
+    }else if (rate == 0.0){
+        //NO hay tasa de conversión. Se lanza excepción
+        [NSException raise:@"NoConversionRateException" format:@"Must have a conversion from %@ to %@",self.currency, currency];
+    }else{ //Hay tasa de conversión
+        
+        NSInteger newAmount = [self.amount integerValue] * rate;
+        
+        result = [[AMSMoney alloc] initWithAmount:newAmount currency:currency];
+        
+    }
+    return result;
+
 }
 
 #pragma mark - Overwritten
@@ -59,13 +82,13 @@
 
 -(NSUInteger) hash{
     
-    return (NSUInteger)self.amount;
+    return [self.amount integerValue];
 
 }
 
 -(NSString *) description{
     
-    return [NSString stringWithFormat:@"<%@ %ld", [self class], (long)[self amount]];
+    return [NSString stringWithFormat:@"<%@: %@ %@>", [self class], self.amount,self.currency];
 }
 
 

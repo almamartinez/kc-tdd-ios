@@ -7,9 +7,15 @@
 //
 
 @import Foundation;
-@class AMSMoney;
+#import "AMSMoney.h"
+#import "AMSBroker.h"
 
 @interface AMSBroker : NSObject
 
--(AMSMoney *)reduce:(AMSMoney *) money toCurrency:(NSString *) currency;
+@property (nonatomic, strong) NSMutableDictionary *rates;
+
+-(AMSMoney *)reduce:(id<AMSMoney>)money toCurrency:(NSString *) currency;
+-(void) addRate:(NSInteger) rate fromCurrency:(NSString *)fromCurrency toCurrency: (NSString *) currency;
+-(NSString *) keyFromCurrency: (NSString *) fromCurrency toCurrency:(NSString *) toCurrency;
+
 @end
