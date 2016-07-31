@@ -11,4 +11,10 @@
 
 @interface AMSWallet : NSObject<AMSMoney>
 
+@property (nonatomic, readonly, strong) NSArray *currencies;
+
+-(NSUInteger) numberOfCurrencies;
+-(NSUInteger) amountForCurrency:(NSString *)currency;
+-(NSUInteger) countForCurrency:(NSString *)currency;
+-(AMSMoney *) moneyAtPosition:(NSInteger)position ForCurrency:(NSString *)currency;
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AMSWallet.h"
+#import "AMSWalletTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    AMSWallet *wallet = [[AMSWallet alloc] initWithAmount:40 currency:@"EUR"];
+    [wallet plus: [AMSMoney dollarWithAmount:20]];
+    [wallet plus:[AMSMoney euroWithAmount:20]];
+    [wallet plus:[AMSMoney euroWithAmount:10]];
+    [wallet plus:[AMSMoney dollarWithAmount:50]];
+    [wallet plus:[AMSMoney euroWithAmount:12]];
+
+    AMSWalletTableViewController *walletVC = [[AMSWalletTableViewController alloc] initWithModel:wallet];
+    
+    UINavigationController *walletNav = [[UINavigationController alloc] initWithRootViewController:walletVC];
+    
+    self.window.rootViewController = walletNav;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
