@@ -41,7 +41,9 @@
 }
 
 -(void) testThatTableHasOneSectionMoreThanCurrencies{
-    NSInteger sections = [self.walletVC numberOfSectionsInTableView:nil];
+    
+    UITableView *tb = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    NSInteger sections = [self.walletVC numberOfSectionsInTableView:tb];
     
     
     XCTAssertEqual(sections, [self.wallet numberOfCurrencies] +1, @"There must be one section more than the number of currencies.");
@@ -56,7 +58,7 @@
 }
 
 - (void) testThatNumberOfRowsInLastSectionIsOne{
-    
+    XCTAssertEqual(1, [self.walletVC.tableView numberOfRowsInSection:[self.wallet numberOfCurrencies] ],@"Number of cells in last section must be 1 (the total).");
 }
 
 

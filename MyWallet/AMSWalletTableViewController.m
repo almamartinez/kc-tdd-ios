@@ -8,7 +8,6 @@
 
 #import "AMSWalletTableViewController.h"
 #import "AMSWallet.h"
-#import "AMSBroker.h"
 #import "AMSMoney.h"
 
 @interface AMSWalletTableViewController ()
@@ -71,34 +70,19 @@
         
         if (indexPath.row >= [self.model countForCurrency:currency]){
             //Es una celda total
-            cell = [tableView dequeueReusableCellWithIdentifier:TotalCellIdentifier];
-            if (cell == nil) {
-                // La creamos de cero
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                              reuseIdentifier:TotalCellIdentifier];
-            }
+            cell = [self emptyCellForTable:tableView initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TotalCellIdentifier];
             cell.textLabel.text = @"Total";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)[self.model amountForCurrency:currency],currency];
             
         }else{
             //Es una celda money
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                // La creamos de cero
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
-                                              reuseIdentifier:CellIdentifier];
-            }
+            cell = [self emptyCellForTable:tableView initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
             cell.textLabel.text = [NSString stringWithFormat:@"%@ ",[self.model moneyAtPosition:indexPath.row ForCurrency:currency].amount];
             cell.detailTextLabel.text = currency;
         }
     }else{
         //Es la celda total
-        cell = [tableView dequeueReusableCellWithIdentifier:LastCell];
-        if (cell == nil) {
-            // La creamos de cero
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                          reuseIdentifier:LastCell];
-        }
+        cell = [self emptyCellForTable:tableView initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LastCell];
         cell.textLabel.text=@"Total Wallet = ";
         AMSBroker *broker = [AMSBroker new];
         [broker addRate:2 fromCurrency:@"EUR" toCurrency:@"USD"];
@@ -110,5 +94,14 @@
     return cell;
 }
 
-
+- (UITableViewCell *) emptyCellForTable:(UITableView *)tableView initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier{
+    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        // La creamos de cero
+        cell = [[UITableViewCell alloc] initWithStyle:style
+                                      reuseIdentifier:identifier];
+    }
+    return  cell;
+ 
+}
 @end

@@ -55,8 +55,7 @@
     XCTAssertThrows([self.emptyBroker reduce:self.oneDollar toCurrency:@"EUR"], @"No rates should cause exception");
 }
 
--(void) testThatNilConversionDoesNotChangeMoney{
-    
+-(void) testThatNilConversionDoesNotChangeMoney{    
     
     XCTAssertEqualObjects(self.oneDollar, [self.emptyBroker reduce:self.oneDollar toCurrency:@"USD"], @"A nil conversion should have not effect");
 }

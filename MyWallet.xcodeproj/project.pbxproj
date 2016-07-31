@@ -31,7 +31,7 @@
 		A352EEED1D4E033C00B53E3E /* AMSWalletTableVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EEEC1D4E033C00B53E3E /* AMSWalletTableVCTests.m */; };
 		A352EEEE1D4E080100B53E3E /* AMSWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = A33CB96A1D4D14AD001782DE /* AMSWallet.m */; };
 		A352EEEF1D4E081700B53E3E /* AMSMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = A34530891D4A748200EA23E2 /* AMSMoney.m */; };
-		A352EEF21D4E0BAD00B53E3E /* AMSNSNotificationCenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EEF11D4E0BAD00B53E3E /* AMSNSNotificationCenterTests.m */; };
+		A352EEF41D4E57DD00B53E3E /* AMSBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3375BB71D4BEF4100FFA615 /* AMSBroker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,6 @@
 		A352EEE81D4E02E600B53E3E /* AMSWalletTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSWalletTableViewController.h; sourceTree = "<group>"; };
 		A352EEE91D4E02E600B53E3E /* AMSWalletTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSWalletTableViewController.m; sourceTree = "<group>"; };
 		A352EEEC1D4E033C00B53E3E /* AMSWalletTableVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSWalletTableVCTests.m; sourceTree = "<group>"; };
-		A352EEF11D4E0BAD00B53E3E /* AMSNSNotificationCenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSNSNotificationCenterTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +167,6 @@
 		A33D96171D47CD37000F69EC /* MyWalletTests */ = {
 			isa = PBXGroup;
 			children = (
-				A352EEF01D4E0B8900B53E3E /* Singletons */,
 				A33D96311D47D939000F69EC /* Model */,
 				A33D961A1D47CD37000F69EC /* Info.plist */,
 			);
@@ -215,14 +213,6 @@
 				A345308D1D4A801A00EA23E2 /* NSObject+GNUStepAddons.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		A352EEF01D4E0B8900B53E3E /* Singletons */ = {
-			isa = PBXGroup;
-			children = (
-				A352EEF11D4E0BAD00B53E3E /* AMSNSNotificationCenterTests.m */,
-			);
-			name = Singletons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,7 +366,6 @@
 				A34530901D4A830C00EA23E2 /* AMSMoneyTests.m in Sources */,
 				A3375BB51D4BEE3800FFA615 /* AMSBrokerTests.m in Sources */,
 				A33CB9681D4D11ED001782DE /* AMSWalletTest.m in Sources */,
-				A352EEF21D4E0BAD00B53E3E /* AMSNSNotificationCenterTests.m in Sources */,
 				A34530911D4A838C00EA23E2 /* AMSMoney.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +379,7 @@
 				A33CB9731D4D274D001782DE /* AMSSimpleViewController.m in Sources */,
 				A352EEEE1D4E080100B53E3E /* AMSWallet.m in Sources */,
 				A352EEEF1D4E081700B53E3E /* AMSMoney.m in Sources */,
+				A352EEF41D4E57DD00B53E3E /* AMSBroker.m in Sources */,
 				A33CB9781D4D27D9001782DE /* AMSControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
